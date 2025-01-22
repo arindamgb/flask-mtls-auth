@@ -35,14 +35,14 @@ This is because we are using self-signed certificate that is not signed by an ac
 {"message":"Welcome to the mTLS Flask App!"}
 ```
 
-Or, we can pass the the root certificate of the CA
+Or, we can pass the root certificate of the CA
 ```
 # curl https://api.flaskmtlsauth.com:5001 --cacert pki/ca.crt
 {"message":"Welcome to the mTLS Flask App!"}
 ```
-Thus, we have validated the server end certificate.
+Thus, we have validated the server certificate.
 
-*Please note, the **-k** or **--cacert** option won't be needed if the server certificate is issue by an actual CA like **Digicert**, **Comodo** etc.*
+*Please note, the **-k** or **--cacert** option won't be needed if the server certificate is issued by an actual CA like **Digicert**, **Comodo** etc.*
 
 # Enable mTLS and redeploy
 ```
@@ -64,9 +64,9 @@ This error indicates that the server we are trying to communicate with using cur
 # curl https://api.flaskmtlsauth.com:5001 --cacert pki/ca.crt --cert pki/client.crt --key pki/client.key
 {"message":"Welcome to the mTLS Flask App!"}
 ```
-Now, we have authenticated ourselves using the client certificate and client key. Again **--cacert** option won't be needed in case of an actual CA
+Now, we have authenticated ourselves using the client certificate and client key. Again **--cacert** option won't be needed in case of an actual CA.
 
-*Please note, the domain name must be present in the **CN** or **SAN** field defiend in the server certificate.*
+*Please note, the domain name must be present in the **CN** or **SAN** field defined in the server certificate.*
 
 # Reference
 
