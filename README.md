@@ -7,7 +7,7 @@
 ## What is mTLS
 Mutual TLS, or mTLS, is a type of mutual authentication in which the two parties in a connection authenticate each other using the TLS protocol. Also, Kubernetes uses this extensively to ensure secure commnucation between different cluster components.
 
-![mtls alt text](/image/mtls.png "How mTLS works")
+![mtls alt text](/images/mtls.png "How mTLS works")
 
 *Image Source: cloudflare.com*
 
