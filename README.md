@@ -13,11 +13,11 @@ Mutual TLS, or mTLS, is a type of mutual authentication in which the two parties
 
 # Running this project in Docker
 ```
-# git clone 
+# git clone https://github.com/arindamgb/flask-mtls-auth 
 # cd flask-mtls-auth
 # echo '127.0.0.1 api.flaskmtlsauth.com' >> /etc/hosts
-# ./cert-generate.sh
-# ./run.sh
+# bash cert-generate.sh
+# bash run.sh
 # docker logs flask-mtls-auth
 INFO: *** Client auth is disabled ***
 ```
@@ -47,7 +47,7 @@ Thus, we have validated the server certificate.
 # Enable mTLS and redeploy
 ```
 # sed -i '/^#MTLS_ENABLED=true/s/^#//' .env
-# ./run.sh
+# bash run.sh
 # docker logs flask-mtls-auth
 INFO: *** mTLS is enabled ***
 ```
