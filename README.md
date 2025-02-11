@@ -12,6 +12,9 @@ Mutual TLS, or mTLS, is a type of mutual authentication in which the two parties
 *Image Source: cloudflare.com*
 
 # Running this project in Docker
+
+> For ease of understanding, we will generate and use certificates __signed by the same CA authority__.
+
 ```
 # git clone https://github.com/arindamgb/flask-mtls-auth
 # cd flask-mtls-auth
