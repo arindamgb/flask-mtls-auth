@@ -13,7 +13,7 @@ Mutual TLS, or mTLS, is a type of mutual authentication in which the two parties
 
 # Running this project in Docker
 ```
-# git clone https://github.com/arindamgb/flask-mtls-auth 
+# git clone https://github.com/arindamgb/flask-mtls-auth
 # cd flask-mtls-auth
 # echo '127.0.0.1 api.flaskmtlsauth.com' >> /etc/hosts
 # bash cert-generate.sh
@@ -40,6 +40,9 @@ Or, we can pass the root certificate of the CA
 # curl https://api.flaskmtlsauth.com:5001 --cacert pki/ca.crt
 {"message":"Welcome to the mTLS Flask App!"}
 ```
+
+But why do we need to use `--cacert pki/ca.crt`? Think of it this way: The browser comes with pre-installed certificates from all authorized CAs, making those certificates trusted by default. However, since we are using our own CA that we created, we need to install its certificate in the browser to explicitly tell it to trust our CA. Now, replace `browser` with `curl`—both are client applications. So, `--cacert pki/ca.crt` instructs curl to include our CA certificate as trusted.
+
 Thus, we have validated the server certificate.
 
 *Please note, the **-k** or **--cacert** option won't be needed if the server certificate is issued by an actual CA like **Digicert**, **Comodo** etc.*
