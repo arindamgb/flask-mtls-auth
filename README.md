@@ -74,6 +74,25 @@ Now, we have authenticated ourselves using the client certificate and client key
 
 *Please note, the domain name must be present in the **CN** or **SAN** field defined in the server certificate.*
 
+# Real Use Case Scenario
+This exact technique is used in a Kubernetes Cluster set up using Kubeadm tool. The `kube-apiserver` accesses the `etcd` server as a client using the client `crt` and client `key` signed by `etcd` CA.
+
+The `kube-apiserver` and `etcd` server uses self-signed CA certificates.
+
+Inspect the `kube-apiserver` configuration in `/etc/kubernetes/manifests/kube-apiserver.yaml`
+```
+    - --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt # ca of the server, i.e. etcd
+    - --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt # client crt signed by etcd ca
+    - --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key # client key
+```
+
+Inspect the `etcd` configuration in `/etc/kubernetes/manifests/etcd.yaml`
+```
+    - --cert-file=/etc/kubernetes/pki/etcd/server.crt # server crt of etcd
+    - --key-file=/etc/kubernetes/pki/etcd/server.key # etcd server crt    
+    - --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt # etcd ca trust
+```
+
 # Reference
 
 This repo is highly influenced by the Medium article [MTLS-Everything You need to know (Part-I)](https://medium.com/@skshukla.0336/mtls-everything-you-need-to-know-e03804b30804) where Java is used. I also recommend reading this article.
